@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/models/todo.dart';
 import 'package:todo_list/widgets/todo_list_item.dart';
 
 class TodoListPage extends StatefulWidget {
@@ -12,7 +13,7 @@ class _TodoListPageState extends State<TodoListPage> {
   final TextEditingController todoController =
       TextEditingController();
 
-  List<String> todos = [];
+  List<Todo> todos = [];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,11 @@ class _TodoListPageState extends State<TodoListPage> {
                       onPressed: () {
                         String text = todoController.text;
                         setState(() {
-                          todos.add(text);
+                          Todo newTodo = Todo(
+                            title: text,
+                            dateTime: DateTime.now(),
+                          );
+                          todos.add(newTodo);
                         });
                         todoController.clear();
                         //todos.add(text);
@@ -71,8 +76,8 @@ class _TodoListPageState extends State<TodoListPage> {
                     padding: EdgeInsets.zero, //importante
                     //physics: NeverScrollableScrollPhysics(),
                     children: [
-                      for (String todo in todos)
-                        TodoListItem(title: todo),
+                      for (Todo todo in todos)
+                        TodoListItem(todo: todo),
                     ],
                   ),
                 ),
