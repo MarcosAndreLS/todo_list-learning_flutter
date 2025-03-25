@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/pages/todo_list_page.dart';
-import 'package:flutter/rendering.dart';
 
 void main() {
-  debugPaintSizeEnabled = true;
+  //debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 

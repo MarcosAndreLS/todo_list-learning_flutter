@@ -77,7 +77,10 @@ class _TodoListPageState extends State<TodoListPage> {
                     //physics: NeverScrollableScrollPhysics(),
                     children: [
                       for (Todo todo in todos)
-                        TodoListItem(todo: todo),
+                        TodoListItem(
+                          todo: todo,
+                          onDelete: onDelete,
+                        ),
                     ],
                   ),
                 ),
@@ -112,5 +115,11 @@ class _TodoListPageState extends State<TodoListPage> {
         ),
       ),
     );
+  }
+
+  void onDelete(Todo todo) {
+    setState(() {
+      todos.remove(todo);
+    });
   }
 }
