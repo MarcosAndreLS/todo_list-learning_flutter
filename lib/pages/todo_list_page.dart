@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/models/todo.dart';
+import 'package:todo_list/repositories/todo_repository.dart';
 import 'package:todo_list/widgets/todo_list_item.dart';
 
 class TodoListPage extends StatefulWidget {
@@ -12,6 +13,8 @@ class TodoListPage extends StatefulWidget {
 class _TodoListPageState extends State<TodoListPage> {
   final TextEditingController todoController =
       TextEditingController();
+
+  final TodoRepository todoRepository = TodoRepository();
 
   List<Todo> todos = [];
 
@@ -50,6 +53,7 @@ class _TodoListPageState extends State<TodoListPage> {
                             dateTime: DateTime.now(),
                           );
                           todos.add(newTodo);
+                          todoRepository.saveTodoList(todos);
                         });
                         todoController.clear();
                         //todos.add(text);
